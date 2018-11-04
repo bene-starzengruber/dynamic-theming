@@ -22,6 +22,9 @@ export class ThemingService {
 
     /**
      * Change single or multiple css variabels
+     * Note: There is a bug in the polyfill library, which causes that variables that are not explicitly set, are removed.
+     * Therefore we have to get all current variables and adapt them depending on our needs
+     * This can be changed as soon as this issue is fixed: https://github.com/jhildenbiddle/css-vars-ponyfill/issues/33
      * @param changedTheme Object where each key is the theming option name (e.g. --background) and it will get assigned it's value
      * @param completeCallback Callback when variables were successfully updated
      */
