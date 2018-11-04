@@ -1,7 +1,6 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { ThemingService } from './theming/theming.service';
-import { stringify } from '@angular/core/src/render3/util';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
+import { ThemingService } from './theme/theming.service';
 
 @Component({
   selector: 'app-root',
@@ -10,30 +9,12 @@ import { stringify } from '@angular/core/src/render3/util';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  
-  private themeBase = document.body;
 
-  themables = [
-    '--backgroundColor',
-    '--textColor'
-  ];
-
-  currentTheme: {};
-
-  constructor(private themingService: ThemingService, private changeDetector: ChangeDetectorRef) {
-  }
+  constructor(private themingService: ThemingService) {}
 
   ngOnInit() {
-    this.themingService.initTheme((theme) => this.setCurrentTheme(theme));
-  }
-
-  updateTheme(themeOption: string, value: any) {
-    this.themingService.updateTheme({ [themeOption]: value }, (theme) => this.setCurrentTheme(theme));
-  }
-
-  private setCurrentTheme(theme: {}) {
-    this.currentTheme = theme;
-    this.changeDetector.markForCheck();
+    // Apply default variables 
+    this.themingService.initTheme();
   }
 
 }

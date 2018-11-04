@@ -3,11 +3,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
-import { ThemingService } from './theming/theming.service';
+import { ThemingService } from './theme/theming.service';
+import { ThemeComponent } from './theme/theme.component';
+import { ContentComponent } from './content/content.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ThemeComponent,
+    ContentComponent
   ],
   imports: [
     BrowserModule,

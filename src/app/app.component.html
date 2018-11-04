@@ -1,9 +1,2 @@
-<div *ngFor="let themeOption of themables">
-  <span>{{ themeOption }}</span>
-  <input type="color" [value]="currentTheme && currentTheme[themeOption]" (change)="updateTheme(themeOption, $event.target.value)">
-  <br>
-</div>
-
-<div class="test-container">
-  Do penguins have knees?
-</div>
+<theme></theme>
+<content></content>
