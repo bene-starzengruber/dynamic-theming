@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
-import cssVars from 'css-vars-ponyfill';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { ThemingService } from './theming/theming.service';
+import { stringify } from '@angular/core/src/render3/util';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
@@ -11,21 +14,26 @@ export class AppComponent {
   private themeBase = document.body;
 
   themables = [
-    'backgroundColor',
-    'textColor'
+    '--backgroundColor',
+    '--textColor'
   ];
 
+  currentTheme: {};
+
+  constructor(private themingService: ThemingService, private changeDetector: ChangeDetectorRef) {
+  }
+
   ngOnInit() {
-  	cssVars();
+    this.themingService.initTheme((theme) => this.setCurrentTheme(theme));
   }
 
   updateTheme(themeOption: string, value: any) {
-    const cssVariable = '--' + themeOption;
-    this.themeBase.style.setProperty(cssVariable, value);
+    this.themingService.updateTheme({ [themeOption]: value }, (theme) => this.setCurrentTheme(theme));
   }
 
-  getCurrentThemeValue(themeOption: string) {
-    return getComputedStyle(this.themeBase).getPropertyValue('--' + themeOption).trim();
+  private setCurrentTheme(theme: {}) {
+    this.currentTheme = theme;
+    this.changeDetector.markForCheck();
   }
 
 }

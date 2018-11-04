@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
+import { ThemingService } from './theming/theming.service';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     CommonModule
   ],
-  providers: [],
+  providers: [ThemingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
