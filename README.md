@@ -2,6 +2,8 @@
 Example App on how to use CSS Variables to enable dynamic theming.
 Uses polyfills to also work for IE11 despite it not supporting CSS Variables
 
+![alt text](https://i.imgur.com/prMuPiH.png)
+
 Application is split in 2 components
 * Theme-Component: Shows current selected theme colors and updates colors
 * Content-Component: Shows some elements which are styled dynamically
